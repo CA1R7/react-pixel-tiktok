@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "declaration": false,
+    "declaration": true,
     "allowJs": true,
     "resolveJsonModule": true,
     "outDir": "dist"
