@@ -1,0 +1,14 @@
+{
+  "name": "react-tiktok-pixel",
+  "version": "1.0.0",
+  "main": "/dist/index.js",
+  "repository": "https://github.com/CA1R7/react-tiktok-pixel.git",
+  "author": "CA1R7",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.15.10",
+    "typescript": "^5.0.2"
+  }
+}
