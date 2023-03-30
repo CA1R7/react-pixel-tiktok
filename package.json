@@ -1,5 +1,5 @@
 {
-  "name": "react-tiktok-pixel",
+  "name": "react-pixel-tiktok",
   "description": "React wrapper for TikTok Pixel",
   "version": "1.0.1",
   "main": "./dist/index.js",
@@ -9,7 +9,7 @@
     "dev": "yarn build && yarn start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/CA1R7/react-tiktok-pixel.git",
+  "repository": "https://github.com/CA1R7/react-pixel-tiktok.git",
   "author": "CA1R7",
   "license": "MIT",
   "private": false,
@@ -28,9 +28,9 @@
     "pixel"
   ],
   "bugs": {
-    "url": "https://github.com/CA1R7/react-tiktok-pixel/issues"
+    "url": "https://github.com/CA1R7/react-pixel-tiktok/issues"
   },
-  "homepage": "https://github.com/CA1R7/react-tiktok-pixel#readme",
+  "homepage": "https://github.com/CA1R7/react-pixel-tiktok#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.15.10",

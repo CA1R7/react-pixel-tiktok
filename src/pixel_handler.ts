@@ -1,7 +1,7 @@
 /**
  * React Tiktok Pixel Handler
  *
- * @package react-tiktok-taboola
+ * @package react-pixel-tiktok
  * @author CA1R7 <cairbyte71@icloud.com>
  */
 

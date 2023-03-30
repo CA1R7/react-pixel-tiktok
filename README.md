@@ -7,7 +7,7 @@ This is a lightweight package that enables TikTok Pixel tracking on React-based 
 To install the package, simply run the following command:
 
 ```
-yarn add react-tiktok-pixel
+yarn add react-pixel-tiktok
 ```
 
 ## Usage
@@ -16,8 +16,8 @@ To use this package, here's an example:
 
 ```typescript
 import React, { FC } from "react";
-import tiktokPixelHandler from "react-tiktok-pixel";
-// or import { tiktokPixelHandler } from "react-tiktok-pixel";
+import tiktokPixelHandler from "react-pixel-tiktok";
+// or import { tiktokPixelHandler } from "react-pixel-tiktok";
 
 export const TIKTOK_PIXEL_ID = "123456789";
 
