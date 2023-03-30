@@ -1,6 +1,7 @@
 {
   "name": "react-tiktok-pixel",
-  "version": "1.0.0",
+  "description": "React wrapper for TikTok Pixel",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -12,6 +13,24 @@
   "author": "CA1R7",
   "license": "MIT",
   "private": false,
+  "files": [
+    "src",
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "tiktok",
+    "tracking",
+    "npm",
+    "javascript",
+    "typescript",
+    "wrapper",
+    "pixel"
+  ],
+  "bugs": {
+    "url": "https://github.com/CA1R7/react-tiktok-pixel/issues"
+  },
+  "homepage": "https://github.com/CA1R7/react-tiktok-pixel#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.15.10",

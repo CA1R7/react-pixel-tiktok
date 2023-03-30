@@ -66,112 +66,131 @@ export class TiktokPixelHandler {
   }
 
   public init(id?: string): void {
-    if (id) {
-      this.cliendId = id;
-    }
+    try {
+      if (id) {
+        this.cliendId = id;
+      }
 
-    if (!this.cliendId) {
-      throw new Error("Tiktok Pixel Client Id is not defined");
-    }
+      if (!this.cliendId) {
+        throw new Error("Tiktok Pixel Client Id is not defined");
+      }
 
-    window.TiktokAnalyticsObject = this.pixel_path;
+      window.TiktokAnalyticsObject = this.pixel_path;
 
-    let ttq = this.getTracker();
+      let ttq = this.getTracker();
 
-    if (Array.isArray(ttq) && ttq.length) {
-      console.warn(
-        "Tiktok Pixel is already initialized. Please check your code."
-      );
-    }
+      if (Array.isArray(ttq) && ttq.length) {
+        console.warn(
+          "Tiktok Pixel is already initialized. Please check your code."
+        );
+      }
 
-    ttq.methods = [
-      "page",
-      "track",
-      "identify",
-      "instances",
-      "debug",
-      "on",
-      "off",
-      "once",
-      "ready",
-      "alias",
-      "group",
-      "enableCookie",
-      "disableCookie",
-    ];
+      ttq.methods = [
+        "page",
+        "track",
+        "identify",
+        "instances",
+        "debug",
+        "on",
+        "off",
+        "once",
+        "ready",
+        "alias",
+        "group",
+        "enableCookie",
+        "disableCookie",
+      ];
 
-    ttq.setAndDefer = function (t: TiktokPixelTTQHandler, e: string | number) {
-      t[e] = function () {
-        t.push([e].concat(Array.prototype.slice.call(arguments, 0x0)));
+      ttq.setAndDefer = function (
+        t: TiktokPixelTTQHandler,
+        e: string | number
+      ) {
+        t[e] = function () {
+          t.push([e].concat(Array.prototype.slice.call(arguments, 0x0)));
+        };
       };
-    };
 
-    for (let i = 0x0; i < ttq.methods.length; i++)
-      ttq.setAndDefer(ttq, ttq.methods[i]);
-    (ttq.instance = function (t: string | number) {
-      for (var e = ttq._i[t] || [], n = 0x0; n < ttq.methods.length; n++)
-        ttq.setAndDefer(e, ttq.methods[n]);
-      return e;
-    }),
-      (ttq.load = function (e: string, n?: {}) {
-        let i = "https://analytics.tiktok.com/i18n/pixel/events.js";
-        (ttq._i = ttq._i || {}),
-          (ttq._i[e] = []),
-          (ttq._i[e]._u = i),
-          (ttq._t = ttq._t || {}),
-          (ttq._t[e] = +new Date()),
-          (ttq._o = ttq._o || {}),
-          (ttq._o[e] = n || {});
-        let o = document.createElement("script");
-        (o.type = "text/javascript"),
-          (o.async = !0x0),
-          (o.src = i + "?sdkid=" + e + "&lib=" + this.pixel_path);
-        let a = document.getElementsByTagName("script")[0x0];
-        a.parentNode && a.parentNode.insertBefore(o, a);
-      });
-    ttq.load(this.cliendId);
-    ttq.page();
+      for (let i = 0x0; i < ttq.methods.length; i++)
+        ttq.setAndDefer(ttq, ttq.methods[i]);
+      (ttq.instance = function (t: string | number) {
+        for (var e = ttq._i[t] || [], n = 0x0; n < ttq.methods.length; n++)
+          ttq.setAndDefer(e, ttq.methods[n]);
+        return e;
+      }),
+        (ttq.load = function (e: string, n?: {}) {
+          let i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+          (ttq._i = ttq._i || {}),
+            (ttq._i[e] = []),
+            (ttq._i[e]._u = i),
+            (ttq._t = ttq._t || {}),
+            (ttq._t[e] = +new Date()),
+            (ttq._o = ttq._o || {}),
+            (ttq._o[e] = n || {});
+          let o = document.createElement("script");
+          (o.type = "text/javascript"),
+            (o.async = !0x0),
+            (o.src = i + "?sdkid=" + e + "&lib=" + this.pixel_path);
+          let a = document.getElementsByTagName("script")[0x0];
+          a.parentNode && a.parentNode.insertBefore(o, a);
+        });
+      ttq.load(this.cliendId);
+      ttq.page();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   public setPageView(_instance?: string): boolean {
-    if (!this.cliendId) {
-      throw new Error("Tiktok Pixel Client Id is not defined");
+    try {
+      if (!this.cliendId) {
+        throw new Error("Tiktok Pixel Client Id is not defined");
+      }
+
+      let tagN = this.pixel_path;
+
+      if (!window[tagN]) {
+        throw new Error("Tiktok Pixel is not initialized");
+      }
+
+      let instance = _instance
+        ? window[tagN].instance(_instance)
+        : window[tagN];
+
+      instance.page();
+
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-
-    let tagN = this.pixel_path;
-
-    if (!window[tagN]) {
-      throw new Error("Tiktok Pixel is not initialized");
-    }
-
-    let instance = _instance ? window[tagN].instance(_instance) : window[tagN];
-
-    instance.page();
-
-    return true;
   }
 
   public setTracking<K = null>(props: TiktokPixelTracking<K>): boolean {
-    if (!this.cliendId) {
-      throw new Error("Tiktok Pixel Client Id is not defined");
+    try {
+      if (!this.cliendId) {
+        throw new Error("Tiktok Pixel Client Id is not defined");
+      }
+
+      let tagN = this.pixel_path;
+
+      if (!window[tagN]) {
+        throw new Error("Tiktok Pixel is not initialized");
+      }
+
+      if (!props.tracking) {
+        throw new Error("Tiktok Pixel Tracking is not defined");
+      }
+
+      let instance = props.instance
+        ? window[tagN].instance(props.instance)
+        : window[tagN];
+
+      instance.track(props.tracking, props?.data ?? null);
+
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-
-    let tagN = this.pixel_path;
-
-    if (!window[tagN]) {
-      throw new Error("Tiktok Pixel is not initialized");
-    }
-
-    if (!props.tracking) {
-      throw new Error("Tiktok Pixel Tracking is not defined");
-    }
-
-    let instance = props.instance
-      ? window[tagN].instance(props.instance)
-      : window[tagN];
-
-    instance.track(props.tracking, props?.data ?? null);
-
-    return true;
   }
 }
